@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class TextStyles {
   static TextStyle textTitle32SemiBold = GoogleFonts.readexPro(
     fontSize: 32.sp,
@@ -21,7 +19,7 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.black,
   );
-  static TextStyle textProduct16Mediuam = GoogleFonts.readexPro(
+  static TextStyle textProduct16SemiBuld = GoogleFonts.readexPro(
     fontSize: 16.sp,
     fontWeight: FontWeight.w600,
     color: AppColors.black,
@@ -41,5 +39,4 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.grey1,
   );
-  
 }

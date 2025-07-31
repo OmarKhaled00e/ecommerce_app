@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 children: [
                   SizedBox(height: 28.h),
                   SizedBox(
-                    width: 262.w,
+                    
                     child: Text(
                       'Create an account',
                       style: TextStyles.textTitle32SemiBold,
@@ -49,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   SizedBox(height: 8.h),
                   SizedBox(
-                    width: 264.w,
+                    width: 262.w,
                     child: Text(
                       'Let’s create your account.',
                       style: TextStyles.text16Grey,
@@ -135,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     text: 'Create Account',
                   ),
-                  Spacer(),
+                  SizedBox(height: 95.h),
                   Center(
                     child: GestureDetector(
                       onTap: () {

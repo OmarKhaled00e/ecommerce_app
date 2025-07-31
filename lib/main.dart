@@ -5,11 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MealsApp());
+  runApp(const EcommerceApp());
 }
 
-class MealsApp extends StatelessWidget {
-  const MealsApp({super.key});
+class EcommerceApp extends StatelessWidget {
+  const EcommerceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +20,9 @@ class MealsApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Meals App',
+          title: 'Ecommerce App',
           onGenerateRoute: onGenerateRoute,
-          initialRoute: LoginScreen.routName,
+          initialRoute: LoginScreen.routeName,
         );
       },
     );

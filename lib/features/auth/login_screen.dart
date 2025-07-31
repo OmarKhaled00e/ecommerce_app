@@ -3,12 +3,13 @@ import 'package:ecommerce_app/core/style/app_text_styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_button.dart';
 import 'package:ecommerce_app/core/widgets/custom_text_field.dart';
 import 'package:ecommerce_app/features/auth/register_screen.dart';
+import 'package:ecommerce_app/features/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
-  static const routName = 'loginScreen';
+  static const routeName = 'loginScreen';
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -92,11 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 55.h),
                   CustomButton(
                     onPressed: () {
-                      if (fromKey.currentState!.validate()) {}
+                      if (fromKey.currentState!.validate()) {
+                        Navigator.pushNamed(context, MainScreen.routeName);
+                      }
                     },
                     text: 'Sign in',
                   ),
-                  Spacer(),
+                  SizedBox(height: 265.h),
                   Center(
                     child: GestureDetector(
                       onTap: () {
