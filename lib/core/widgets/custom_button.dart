@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app/core/style/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,13 +10,16 @@ class CustomButton extends StatelessWidget {
     this.width,
     this.height,
     this.bordersRadius,
-    this.textColor, this.onPressed, this.fontSize,
+    this.textColor,
+    this.onPressed,
+    this.fontSize, this.icon,
   });
   final String? text;
   final Color? color;
   final Color? textColor;
   final double? width;
   final double? fontSize;
+  final Widget? icon;
   final double? height;
   final double? bordersRadius;
   final void Function()? onPressed;
@@ -32,12 +34,20 @@ class CustomButton extends StatelessWidget {
         fixedSize: Size(width ?? 331.w, height ?? 56.h),
       ),
       onPressed: onPressed,
-      child: Text(
-        text ?? ' ',
-        style: TextStyle(color: textColor ?? Colors.white,
-        fontSize: fontSize ?? 16.sp,
-        fontWeight: FontWeight.w500,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          icon != null ? icon! : SizedBox.shrink(), 
+          icon != null ? SizedBox(width: 8.w,) : SizedBox.shrink(), 
+          Text(
+            text ?? ' ',
+            style: TextStyle(
+              color: textColor ?? Colors.white,
+              fontSize: fontSize ?? 16.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }
