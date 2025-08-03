@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/features/account/account_screen.dart';
 import 'package:ecommerce_app/features/address/address_screen.dart';
 import 'package:ecommerce_app/features/auth/login_screen.dart';
 import 'package:ecommerce_app/features/auth/register_screen.dart';
@@ -16,16 +17,19 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     case ProductScreen.routeName:
       return MaterialPageRoute(builder: (context) => const ProductScreen());
-    
+
     case RegisterScreen.routName:
       return MaterialPageRoute(builder: (context) => const RegisterScreen());
 
     case MainScreen.routeName:
       return MaterialPageRoute(builder: (context) => const MainScreen());
-      
+
     case AddressScreen.routeName:
       return MaterialPageRoute(builder: (context) => const AddressScreen());
-      
+
+    case AccountScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const AccountScreen());
+
     default:
       return MaterialPageRoute(
         builder: (_) =>

@@ -27,7 +27,7 @@ class CartItem extends StatelessWidget {
               ),
               
             ),
-            SizedBox(height: 16.h,),
+            SizedBox(height: 20.h,),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

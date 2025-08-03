@@ -1,8 +1,16 @@
+import 'dart:developer';
+
+import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:dartz/dartz.dart' as either;
 import 'package:ecommerce_app/core/style/app_colors.dart';
 import 'package:ecommerce_app/core/style/app_text_styles.dart';
+import 'package:ecommerce_app/core/utils/animated_snack_dialog.dart';
 import 'package:ecommerce_app/core/widgets/custom_button.dart';
 import 'package:ecommerce_app/core/widgets/custom_text_field.dart';
+import 'package:ecommerce_app/core/widgets/loading_widget.dart';
+import 'package:ecommerce_app/features/auth/models/login_response_model.dart';
 import 'package:ecommerce_app/features/auth/register_screen.dart';
+import 'package:ecommerce_app/features/auth/repo/auth_repo.dart';
 import 'package:ecommerce_app/features/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,8 +26,35 @@ class _LoginScreenState extends State<LoginScreen> {
   final fromKey = GlobalKey<FormState>();
   late TextEditingController userName;
   late TextEditingController password;
+
+  bool isLoading = false;
   @override
   void initState() {
+    AuthRepo().login('omar', 'poikie_').then((
+      either.Either<String, LoginResponseModel> res,
+    ) {
+      res.fold(
+        (error) {
+          showAnimatedSnackDialog(
+            context,
+            message: error,
+            type: AnimatedSnackBarType.error,
+          );
+        },
+        (right) {
+          showAnimatedSnackDialog(
+            context,
+            message: 'Login Successfully',
+            type: AnimatedSnackBarType.success,
+          );
+          log(right.toJson().toString());
+        },
+      );
+
+      setState(() {
+        
+      });
+    });
     userName = TextEditingController();
     password = TextEditingController();
     super.initState();
@@ -27,104 +62,110 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 22.w),
-          child: Form(
-            key: fromKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 28.h),
-                  SizedBox(
-                    width: 335.w,
-                    child: Text(
-                      'Login to your account',
-                      style: TextStyles.textTitle32SemiBold,
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  SizedBox(
-                    width: 264.w,
-                    child: Text(
-                      'It’s great to see you again.',
-                      style: TextStyles.text16Grey,
-                    ),
-                  ),
-                  SizedBox(height: 32.h),
-                  Text('User Name', style: TextStyles.text16Mediuam),
-                  SizedBox(height: 8.h),
-                  CustomTextField(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter Your userName';
-                      }
-                      return null;
-                    },
-                    controller: userName,
-                    hintText: 'Enter your email address',
-                    style: TextStyles.hintText16Grey,
-                  ),
-                  SizedBox(height: 16.h),
-                  Text('Password', style: TextStyles.text16Mediuam),
-                  SizedBox(height: 8.h),
-                  CustomTextField(
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Enter Your Password';
-                      }
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters';
-                      }
-                      return null;
-                    },
-                    controller: password,
-                    hintText: 'Enter your password',
-                    style: TextStyles.hintText16Grey,
-                    suffixIcon: Icon(
-                      Icons.remove_red_eye,
-                      color: AppColors.grey,
-                      size: 20.sp,
-                    ),
-                  ),
-
-                  SizedBox(height: 55.h),
-                  CustomButton(
-                    onPressed: () {
-                      if (fromKey.currentState!.validate()) {
-                        Navigator.pushNamed(context, MainScreen.routeName);
-                      }
-                    },
-                    text: 'Sign in',
-                  ),
-                  SizedBox(height: 265.h),
-                  Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, RegisterScreen.routName);
-                      },
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'Don’t have an account?',
-                          style: TextStyles.text16Grey,
-                          children: [
-                            TextSpan(
-                              text: 'Join',
-                              style: TextStyles.text16Mediuam,
-                            ),
-                          ],
+        body: isLoading
+            ? LoadingWidget()
+            : Padding(
+                padding: EdgeInsets.symmetric(horizontal: 22.w),
+                child: Form(
+                  key: fromKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 28.h),
+                        SizedBox(
+                          width: 335.w,
+                          child: Text(
+                            'Login to your account',
+                            style: TextStyles.textTitle32SemiBold,
+                          ),
                         ),
-                      ),
+                        SizedBox(height: 8.h),
+                        SizedBox(
+                          width: 264.w,
+                          child: Text(
+                            'It’s great to see you again.',
+                            style: TextStyles.text16Grey,
+                          ),
+                        ),
+                        SizedBox(height: 32.h),
+                        Text('User Name', style: TextStyles.text16Mediuam),
+                        SizedBox(height: 8.h),
+                        CustomTextField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter Your userName';
+                            }
+                            return null;
+                          },
+                          controller: userName,
+                          hintText: 'Enter your email address',
+                          style: TextStyles.hintText16Grey,
+                        ),
+                        SizedBox(height: 16.h),
+                        Text('Password', style: TextStyles.text16Mediuam),
+                        SizedBox(height: 8.h),
+                        CustomTextField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return 'Enter Your Password';
+                            }
+                            if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            return null;
+                          },
+                          controller: password,
+                          hintText: 'Enter your password',
+                          style: TextStyles.hintText16Grey,
+                          suffixIcon: Icon(
+                            Icons.remove_red_eye,
+                            color: AppColors.grey,
+                            size: 20.sp,
+                          ),
+                        ),
+
+                        SizedBox(height: 55.h),
+                        CustomButton(
+                          onPressed: () {
+                            // if (fromKey.currentState!.validate()) {
+                            Navigator.pushNamed(context, MainScreen.routeName);
+                            // }
+                          },
+                          text: 'Sign in',
+                        ),
+                        SizedBox(height: 265.h),
+                        Center(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                RegisterScreen.routName,
+                              );
+                            },
+                            child: RichText(
+                              text: TextSpan(
+                                text: 'Don’t have an account?',
+                                style: TextStyles.text16Grey,
+                                children: [
+                                  TextSpan(
+                                    text: 'Join',
+                                    style: TextStyles.text16Mediuam,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 16.h),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 16.h),
-                ],
+                ),
               ),
-            ),
-          ),
-        ),
       ),
     );
   }
