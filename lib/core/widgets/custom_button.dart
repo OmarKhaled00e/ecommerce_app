@@ -12,7 +12,9 @@ class CustomButton extends StatelessWidget {
     this.bordersRadius,
     this.textColor,
     this.onPressed,
-    this.fontSize, this.icon,
+    this.fontSize,
+    this.icon,
+    this.iconRight,
   });
   final String? text;
   final Color? color;
@@ -20,6 +22,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double? fontSize;
   final Widget? icon;
+  final Widget? iconRight;
   final double? height;
   final double? bordersRadius;
   final void Function()? onPressed;
@@ -37,8 +40,8 @@ class CustomButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          icon != null ? icon! : SizedBox.shrink(), 
-          icon != null ? SizedBox(width: 8.w,) : SizedBox.shrink(), 
+          icon != null ? icon! : SizedBox.shrink(),
+          icon != null ? SizedBox(width: 8.w) : SizedBox.shrink(),
           Text(
             text ?? ' ',
             style: TextStyle(
@@ -47,6 +50,8 @@ class CustomButton extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
+          iconRight != null ? SizedBox(width: 8.w) : SizedBox.shrink(),
+          iconRight != null ? iconRight! : SizedBox.shrink(),
         ],
       ),
     );

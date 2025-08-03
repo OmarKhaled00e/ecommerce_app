@@ -24,6 +24,21 @@ class TextStyles {
     fontWeight: FontWeight.w600,
     color: AppColors.black,
   );
+  static TextStyle textProduct16Regular = GoogleFonts.readexPro(
+    fontSize: 16.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+  );
+  static TextStyle textProduct14SemiBuld = GoogleFonts.readexPro(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+    color: AppColors.black,
+  );
+  static TextStyle textProduct12Madiuam = GoogleFonts.readexPro(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black,
+  );
   static TextStyle text16Grey = GoogleFonts.readexPro(
     fontSize: 16.sp,
     fontWeight: FontWeight.w400,

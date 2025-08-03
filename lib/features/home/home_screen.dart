@@ -56,7 +56,7 @@ class HomeScreen extends StatelessWidget {
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.sp,
                 crossAxisSpacing: 16.sp,
-                childAspectRatio: 0.75,
+                childAspectRatio: 0.8,
               ),
               children: [
                 ProductItem(title: 'shose', price: '1150\$'),
