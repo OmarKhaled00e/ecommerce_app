@@ -44,6 +44,11 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.grey,
   );
+  static TextStyle text14 = GoogleFonts.readexPro(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.grey,
+  );
   static TextStyle textProduct12Grey = GoogleFonts.readexPro(
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,

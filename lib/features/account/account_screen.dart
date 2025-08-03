@@ -1,10 +1,7 @@
-import 'package:ecommerce_app/core/style/app_colors.dart';
 import 'package:ecommerce_app/core/style/app_text_styles.dart';
 import 'package:ecommerce_app/core/style/assets.dart';
-import 'package:ecommerce_app/core/widgets/custom_button.dart';
 import 'package:ecommerce_app/features/account/widgets/account_item.dart';
-import 'package:ecommerce_app/features/cart/widgets/cart_item.dart';
-import 'package:ecommerce_app/features/cart/widgets/title_price_widgets.dart';
+import 'package:ecommerce_app/features/address/address_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -38,16 +35,18 @@ class AccountScreen extends StatelessWidget {
             iconPath: Assets.imagesDetails,
             onTap: () {},
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Divider(),
           ),
           AccountItem(
             title: 'Address Book',
             iconPath: Assets.imagesAddress,
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AddressScreen.routeName);
+            },
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Divider(),
           ),
@@ -56,7 +55,7 @@ class AccountScreen extends StatelessWidget {
             iconPath: Assets.imagesQuestion,
             onTap: () {},
           ),
-           Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Divider(),
           ),
@@ -69,20 +68,23 @@ class AccountScreen extends StatelessWidget {
           Divider(thickness: 8, color: Color(0xFFE6E6E6)),
           Spacer(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16 , vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: InkWell(
-              onTap: () {
-                
-              },
+              onTap: () {},
               child: Row(
                 children: [
-                  Icon(Icons.logout , color: Colors.redAccent,size: 25.w,),
-                    SizedBox(width: 8.w,),
-                    Text('Logout' , style: TextStyles.textProduct16Regular.copyWith(color: Color(0xFFED1010)),)
+                  Icon(Icons.logout, color: Colors.redAccent, size: 25.w),
+                  SizedBox(width: 8.w),
+                  Text(
+                    'Logout',
+                    style: TextStyles.textProduct16Regular.copyWith(
+                      color: Color(0xFFED1010),
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
